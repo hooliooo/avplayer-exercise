@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AVFoundationCombine",
+        "repositoryURL": "https://github.com/jozsef-vesza/AVFoundation-Combine",
+        "state": {
+          "branch": null,
+          "revision": "d0de08fc0ec1837b8194910071596db04125901b",
+          "version": "0.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
