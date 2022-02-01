@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0627A96ED80082CA18 /* VideoPlayerView.swift */; };
 		14A4A5BC27A9610B0055D812 /* AVPlayerExerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */; };
 		14A4A5BE27A9610B0055D812 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5BD27A9610B0055D812 /* ContentView.swift */; };
 		14A4A5C027A9610B0055D812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5BF27A9610B0055D812 /* Assets.xcassets */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14585C0627A96ED80082CA18 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		14585C0927A97FE00082CA18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		14A4A5B827A9610B0055D812 /* AVPlayerExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseApp.swift; sourceTree = "<group>"; };
 		14A4A5BD27A9610B0055D812 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +47,8 @@
 		14A4A5D227A9610B0055D812 /* AVPlayerExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITests.swift; sourceTree = "<group>"; };
 		14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		14A4A5E527A962CE0055D812 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14A4A5E727A962FE0055D812 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +76,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14585C0A27A9809F0082CA18 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				14585C0627A96ED80082CA18 /* VideoPlayerView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		14A4A5AF27A9610B0055D812 = {
 			isa = PBXGroup;
 			children = (
-				14A4A5BA27A9610B0055D812 /* AVPlayerExercise */,
+				14A4A5E527A962CE0055D812 /* README.md */,
+				14A4A5E727A962FE0055D812 /* .gitignore */,
+				14585C0927A97FE00082CA18 /* .swiftlint.yml */,
+				14A4A5BA27A9610B0055D812 /* Sources */,
 				14A4A5CB27A9610B0055D812 /* AVPlayerExerciseTests */,
 				14A4A5D527A9610B0055D812 /* AVPlayerExerciseUITests */,
 				14A4A5B927A9610B0055D812 /* Products */,
@@ -91,15 +107,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		14A4A5BA27A9610B0055D812 /* AVPlayerExercise */ = {
+		14A4A5BA27A9610B0055D812 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				14585C0A27A9809F0082CA18 /* Custom Views */,
 				14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */,
 				14A4A5BD27A9610B0055D812 /* ContentView.swift */,
 				14A4A5BF27A9610B0055D812 /* Assets.xcassets */,
 				14A4A5C127A9610B0055D812 /* Preview Content */,
 			);
-			path = AVPlayerExercise;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		14A4A5C127A9610B0055D812 /* Preview Content */ = {
@@ -137,6 +154,7 @@
 				14A4A5B427A9610B0055D812 /* Sources */,
 				14A4A5B527A9610B0055D812 /* Frameworks */,
 				14A4A5B627A9610B0055D812 /* Resources */,
+				14585C0827A97F090082CA18 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -252,11 +270,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		14585C0827A97F090082CA18 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		14A4A5B427A9610B0055D812 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */,
 				14A4A5BE27A9610B0055D812 /* ContentView.swift in Sources */,
 				14A4A5BC27A9610B0055D812 /* AVPlayerExerciseApp.swift in Sources */,
 			);
@@ -416,9 +456,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AVPlayerExercise/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_TEAM = S886WPSL95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -433,6 +475,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alorro.AVPlayerExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,9 +487,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AVPlayerExercise/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
+				DEVELOPMENT_TEAM = S886WPSL95;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -461,6 +506,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alorro.AVPlayerExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
