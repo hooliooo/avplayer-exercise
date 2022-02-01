@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0627A96ED80082CA18 /* VideoPlayerView.swift */; };
+		14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */; };
+		14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0F27A9AF3B0082CA18 /* Constants.swift */; };
+		14585C1227A9B4110082CA18 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C1127A9B4100082CA18 /* OverlayView.swift */; };
+		14585C1427A9E15F0082CA18 /* VideoOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C1327A9E15F0082CA18 /* VideoOptionView.swift */; };
+		14585C1927A9EB010082CA18 /* AVFoundationCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 14585C1827A9EB010082CA18 /* AVFoundationCombine */; };
 		14A4A5BC27A9610B0055D812 /* AVPlayerExerciseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */; };
 		14A4A5BE27A9610B0055D812 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5BD27A9610B0055D812 /* ContentView.swift */; };
 		14A4A5C027A9610B0055D812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5BF27A9610B0055D812 /* Assets.xcassets */; };
@@ -37,6 +42,10 @@
 /* Begin PBXFileReference section */
 		14585C0627A96ED80082CA18 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		14585C0927A97FE00082CA18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSAsset.swift; sourceTree = "<group>"; };
+		14585C0F27A9AF3B0082CA18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		14585C1127A9B4100082CA18 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		14585C1327A9E15F0082CA18 /* VideoOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOptionView.swift; sourceTree = "<group>"; };
 		14A4A5B827A9610B0055D812 /* AVPlayerExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseApp.swift; sourceTree = "<group>"; };
 		14A4A5BD27A9610B0055D812 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14585C1927A9EB010082CA18 /* AVFoundationCombine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,8 +90,26 @@
 			isa = PBXGroup;
 			children = (
 				14585C0627A96ED80082CA18 /* VideoPlayerView.swift */,
+				14585C1127A9B4100082CA18 /* OverlayView.swift */,
+				14585C1327A9E15F0082CA18 /* VideoOptionView.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		14585C0B27A9AB440082CA18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		14585C0E27A9AF2C0082CA18 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				14585C0F27A9AF3B0082CA18 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		14A4A5AF27A9610B0055D812 = {
@@ -110,6 +138,8 @@
 		14A4A5BA27A9610B0055D812 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				14585C0E27A9AF2C0082CA18 /* Utilities */,
+				14585C0B27A9AB440082CA18 /* Models */,
 				14585C0A27A9809F0082CA18 /* Custom Views */,
 				14A4A5BB27A9610B0055D812 /* AVPlayerExerciseApp.swift */,
 				14A4A5BD27A9610B0055D812 /* ContentView.swift */,
@@ -161,6 +191,9 @@
 			dependencies = (
 			);
 			name = AVPlayerExercise;
+			packageProductDependencies = (
+				14585C1827A9EB010082CA18 /* AVFoundationCombine */,
+			);
 			productName = AVPlayerExercise;
 			productReference = 14A4A5B827A9610B0055D812 /* AVPlayerExercise.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +266,9 @@
 				Base,
 			);
 			mainGroup = 14A4A5AF27A9610B0055D812;
+			packageReferences = (
+				14585C1727A9EB010082CA18 /* XCRemoteSwiftPackageReference "AVFoundation-Combine" */,
+			);
 			productRefGroup = 14A4A5B927A9610B0055D812 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -296,7 +332,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */,
+				14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */,
 				14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */,
+				14585C1427A9E15F0082CA18 /* VideoOptionView.swift in Sources */,
+				14585C1227A9B4110082CA18 /* OverlayView.swift in Sources */,
 				14A4A5BE27A9610B0055D812 /* ContentView.swift in Sources */,
 				14A4A5BC27A9610B0055D812 /* AVPlayerExerciseApp.swift in Sources */,
 			);
@@ -625,6 +665,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14585C1727A9EB010082CA18 /* XCRemoteSwiftPackageReference "AVFoundation-Combine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jozsef-vesza/AVFoundation-Combine";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14585C1827A9EB010082CA18 /* AVFoundationCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14585C1727A9EB010082CA18 /* XCRemoteSwiftPackageReference "AVFoundation-Combine" */;
+			productName = AVFoundationCombine;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14A4A5B027A9610B0055D812 /* Project object */;
 }

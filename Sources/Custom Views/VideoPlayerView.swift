@@ -5,8 +5,7 @@
 //  Created by Julio Alorro on 01.02.22.
 //
 
-import class AVFoundation.AVPlayer
-import class AVFoundation.AVPlayerLayer
+import AVFoundation
 import UIKit
 import SwiftUI
 
@@ -14,15 +13,22 @@ import SwiftUI
 public struct VideoPlayerView: UIViewRepresentable {
 
     // MARK: Initializer
-    public init(url: URL, mode: VideoPlayerView.Mode = .pause) {
-        self.url = url
+    public init(
+        asset: HLSAsset,
+        mode: VideoPlayerView.Mode = .pause,
+        selectedOptions: [AVMediaCharacteristic: HLSAssetOption] = [:]
+    ) {
+        self.asset = asset
         self.mode = mode
+        self.selectedOptions = selectedOptions
     }
 
     // MARK: Stored Properties
-    public var url: URL
+    public var asset: HLSAsset
 
     public var mode: VideoPlayerView.Mode
+
+    public var selectedOptions: [AVMediaCharacteristic: HLSAssetOption]
 
     // MARK: UIViewRepresentable Methods
     public func updateUIView(_ uiView: _VideoPlayerView, context: Context) {
@@ -31,11 +37,17 @@ public struct VideoPlayerView: UIViewRepresentable {
             case .play: uiView.player.play()
         }
 
+        self.selectedOptions.forEach { (_, asset) -> Void in
+            uiView.player.currentItem?.select(asset.option, in: asset.group)
+        }
+//        print("Updated: \(uiView.player.currentItem.currentMediaSelection)")
     }
 
     public func makeUIView(context: Context) -> _VideoPlayerView {
         let view: _VideoPlayerView = _VideoPlayerView()
-        view.player = AVPlayer(url: self.url)
+        view.player = AVPlayer(playerItem: self.asset.playerItem)
+
+//        print("Initial: \(view.player.currentItem.currentMediaSelection)")
         return view
     }
 
