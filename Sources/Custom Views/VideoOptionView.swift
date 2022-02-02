@@ -21,9 +21,9 @@ public struct VideoOptionView: View {
         }
     }
 }
-
-struct VideoOption_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoOptionView(name: "Hello, World", isSelected: false)
-    }
-}
+//
+//struct VideoOption_Previews: PreviewProvider {
+//    static var previews: some View {
+//        VideoOptionView(name: "Hello, World", isSelected: false)
+//    }
+//}
