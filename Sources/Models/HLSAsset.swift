@@ -7,19 +7,19 @@
 
 import AVFoundation
 
-public struct HLSAsset {
+public struct HLSAsset: Equatable {
 
     // MARK: Initializer
     public init(url: URL) {
-        self.playerItem = AVPlayerItem(url: url)
+        self.item = AVPlayerItem(url: url)
     }
 
     // MARK: Stored Properties
-    public let playerItem: AVPlayerItem
+    public let item: AVPlayerItem
 
     // MARK: Computed Properties
     public var asset: AVAsset {
-        self.playerItem.asset
+        self.item.asset
     }
 
     public var characteristics: [AVMediaCharacteristic] {
@@ -34,7 +34,7 @@ public struct HLSAsset {
     }
 }
 
-public struct HLSAssetOption {
+public struct HLSAssetOption: Equatable {
 
     public let option: AVMediaSelectionOption
 

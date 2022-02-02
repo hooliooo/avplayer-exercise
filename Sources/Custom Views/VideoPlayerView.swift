@@ -40,14 +40,11 @@ public struct VideoPlayerView: UIViewRepresentable {
         self.selectedOptions.forEach { (_, asset) -> Void in
             uiView.player.currentItem?.select(asset.option, in: asset.group)
         }
-//        print("Updated: \(uiView.player.currentItem.currentMediaSelection)")
     }
 
     public func makeUIView(context: Context) -> _VideoPlayerView {
         let view: _VideoPlayerView = _VideoPlayerView()
-        view.player = AVPlayer(playerItem: self.asset.playerItem)
-
-//        print("Initial: \(view.player.currentItem.currentMediaSelection)")
+        view.player = AVPlayer(playerItem: self.asset.item)
         return view
     }
 
@@ -56,11 +53,9 @@ public struct VideoPlayerView: UIViewRepresentable {
 // MARK: Coordinator
 public extension VideoPlayerView {
 
-    enum Mode {
-//        case fastFoward
+    enum Mode: Hashable {
         case play
         case pause
-//        case rewind
     }
 
 }
