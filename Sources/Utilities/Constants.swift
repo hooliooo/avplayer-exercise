@@ -15,4 +15,12 @@ public enum Constants {
 
     internal static let ViewLog: OSLog = OSLog(subsystem: "com.alorro.AVPlayerExercise", category: "UI")
 
+    public static let formatter: DateComponentsFormatter = {
+        let f = DateComponentsFormatter()
+        f.allowedUnits = [.minute, .second]
+        f.allowsFractionalUnits = false
+        f.zeroFormattingBehavior = .pad
+        return f
+    }()
+
 }

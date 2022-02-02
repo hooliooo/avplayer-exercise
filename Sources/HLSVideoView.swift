@@ -20,11 +20,12 @@ public struct HLSVideoView: View {
 
     // MARK: View
     public var body: some View {
-//        VideoPlayer(player: AVPlayer(playerItem: self.asset.playerItem))
         WithViewStore(self.store) { viewStore in
+//            VideoPlayer(player: AVPlayer(playerItem: viewStore.asset.item))
+
             ZStack(alignment: .bottom) {
                 VideoPlayerView(
-                    asset: viewStore.asset,
+                    player: viewStore.player,
                     mode: viewStore.overlayState.isPlaying ? .play : .pause,
                     selectedOptions: viewStore.overlayState.selectedOptionsByCharacteristic.compactMapValues { $0 }
                 )
@@ -35,8 +36,8 @@ public struct HLSVideoView: View {
                         .frame(
                             minWidth: 0.0,
                             maxWidth: .infinity,
-                            minHeight: 72.0,
-                            maxHeight: 72.0,
+                            minHeight: 84.0,
+                            maxHeight: 84.0,
                             alignment: Alignment.center
                         )
                 }
@@ -68,6 +69,8 @@ public extension HLSVideoView {
          The asset to be played by the AVPlayer
          */
         public var asset: HLSAsset
+
+        public var player: AVPlayer
 
         /**
          The status of the AVPlayerItem
@@ -126,8 +129,11 @@ public extension HLSVideoView {
         OverlayView.Reducer.pullback(
             state: \.overlayState,
             action: /HLSVideoView.Action.overlay,
-            environment: { (_: HLSVideoView.Environment) -> OverlayView.Environment in
-                OverlayView.Environment()
+            environment: { (env: HLSVideoView.Environment) -> OverlayView.Environment in
+                OverlayView.Environment(
+                    mainQueue: env.mainQueue,
+                    monitorProgress: env.client.monitorProgress
+                )
             }
         ),
         .init {
@@ -150,7 +156,9 @@ public extension HLSVideoView {
                             else {
                                 continue
                             }
+                            state.overlayState.player = state.player
                             state.overlayState.groupsByCharacteristic[characteristic] = group
+                            state.overlayState.end = CMTimeGetSeconds(state.asset.item.duration)
 
                             if let selectedOption = state.asset.item.currentMediaSelection.selectedMediaOption(in: group) {
                                 state.overlayState.selectedOptionsByCharacteristic[characteristic] = HLSAssetOption(

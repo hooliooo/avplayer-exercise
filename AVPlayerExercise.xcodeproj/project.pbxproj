@@ -25,6 +25,7 @@
 		14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */; };
 		14EFAB8627AAB59E006F87BA /* String+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */; };
 		14EFAB8827AABAE5006F87BA /* AssetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8727AABAE5006F87BA /* AssetClient.swift */; };
+		14EFAB8C27AB00ED006F87BA /* PlaybackProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMediaCharacteristic+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14EFAB8727AABAE5006F87BA /* AssetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetClient.swift; sourceTree = "<group>"; };
+		14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				14585C0627A96ED80082CA18 /* VideoPlayerView.swift */,
 				14585C1127A9B4100082CA18 /* OverlayView.swift */,
 				14585C1327A9E15F0082CA18 /* VideoOptionView.swift */,
+				14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14EFAB8C27AB00ED006F87BA /* PlaybackProgressView.swift in Sources */,
 				14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */,
 				14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */,
 				14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */,
