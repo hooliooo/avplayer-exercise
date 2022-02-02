@@ -48,56 +48,16 @@ public struct HLSVideoView: View {
                 DragGesture(minimumDistance: 0.0)
                     .onChanged { _ in
                         os_log("Dragging Currently", log: Constants.ViewLog, type: OSLogType.info)
-    //                    self.workItem?.cancel()
-    //                    withAnimation {
-    //                        self.showControls = true
-    //                    }
+                        withAnimation {
+                            viewStore.send(Action.isUserInteracting(true))
+                        }
                     }
                     .onEnded { _ in
                         os_log("Dragging Ended", log: Constants.ViewLog, type: OSLogType.info)
-    //                    self.onGestureEnd()
+                        viewStore.send(Action.isUserInteracting(false))
                     }
                 )
         }
-    }
-
-    /**
-     Creates a DispatchWorkItem that changes the self.showControls state variable to false with an animation to make the overlay disappear 5 seconds after the user finishes a gesture of anykind.
-     */
-    private func onGestureEnd() {
-//        if self.optionsButtonTapped {
-//            self.workItem?.cancel()
-//        } else {
-//            let item: DispatchWorkItem = DispatchWorkItem {
-//                withAnimation {
-//                    self.showControls = false
-//                }
-//            }
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0, execute: item)
-//            self.workItem = item
-//        }
-    }
-
-    private func onOptionsSelected(_ option: (characteristic: AVMediaCharacteristic, option: HLSAssetOption)) {
-//        self.optionsButtonTapped.toggle()
-//        self.onGestureEnd()
-//        self.selectedOptions[option.characteristic] = option.option
-    }
-
-    private func onOffOptionSelected() {
-//        self.optionsButtonTapped.toggle()
-//        self.onGestureEnd()
-//        self.selectedOptions[AVMediaCharacteristic.legible] = nil
-    }
-
-    private func onOptionsButtonTapped() {
-//        self.optionsButtonTapped.toggle()
-//        self.onGestureEnd()
-    }
-
-    private func onCancelSelected() {
-//        self.optionsButtonTapped.toggle()
-//        self.onGestureEnd()
     }
 }
 
@@ -133,6 +93,8 @@ public extension HLSVideoView {
         case monitorStatus
         case playerItemStatus(Result<AVPlayerItem.Status, Never>)
         case isUserInteracting(Bool)
+        case userHasStoppedInteracting
+        case hideOverLay
         case overlay(OverlayView.Action)
 
         public static func == (lhs: HLSVideoView.Action, rhs: HLSVideoView.Action) -> Bool {
@@ -143,6 +105,10 @@ public extension HLSVideoView {
                     return lhsValue == rhsValue
                 case (.isUserInteracting(let lhsValue), .isUserInteracting(let rhsValue)):
                     return lhsValue == rhsValue
+                case (.userHasStoppedInteracting, .userHasStoppedInteracting):
+                    return true
+                case (.hideOverLay, .hideOverLay):
+                    return true
                 case (.overlay(let lhsValue), .overlay(let rhsValue)):
                     return lhsValue == rhsValue
                 default:
@@ -168,6 +134,7 @@ public extension HLSVideoView {
         ),
         .init {
             (state: inout State, action: Action, env: Environment) -> Effect<Action, Never> in // swiftlint:disable:this closure_parameter_position
+            struct InteractionId: Hashable {}
             switch action {
                 case .monitorStatus:
                     struct StatusId: Hashable {}
@@ -198,9 +165,26 @@ public extension HLSVideoView {
                     return .none
 
                 case .isUserInteracting(let isUserInteracting):
-                    state.isShowingPlaybackOverlay = isUserInteracting
+                    if isUserInteracting {
+                        state.isShowingPlaybackOverlay = true
+                        return .cancel(id: InteractionId())
+                    } else {
+                        return .init(value: Action.userHasStoppedInteracting)
+                    }
+                case .userHasStoppedInteracting:
+                    return .init(value: Action.hideOverLay)
+                        .delay(for: 5.0, scheduler: env.mainQueue.animation(Animation.linear))
+                        .eraseToEffect()
+                        .cancellable(id: InteractionId(), cancelInFlight: true)
+                case .hideOverLay:
+                    state.isShowingPlaybackOverlay = false
                     return .none
-
+                case .overlay(OverlayView.Action.mediaOptionsButtonTapped):
+                    return .init(value: .isUserInteracting(state.overlayState.isShowingMediaOptions))
+                case .overlay(OverlayView.Action.optionSelected):
+                    return .init(value: .isUserInteracting(false))
+                case .overlay(OverlayView.Action.cancelSelected):
+                    return .init(value: .isUserInteracting(false))
                 case .overlay(let action):
                     return .none
             }

@@ -81,7 +81,7 @@ public struct OverlayView: View {
                                     Button(
                                         "Cancel",
                                         action: {
-                                            
+                                            viewStore.send(Action.cancelSelected)
                                         }
                                     )
                                 },
@@ -93,9 +93,9 @@ public struct OverlayView: View {
                                 .foregroundColor(Color.black)
                                 .background(Color.red)
                                 .cornerRadius(33.0)
-//                                .onTapGesture {
-//                                    self.onOptionsButtonTapped()
-//                                }
+                                .onTapGesture {
+                                    viewStore.send(Action.mediaOptionsButtonTapped)
+                                }
                         }
                     }
                 }
@@ -139,6 +139,7 @@ public extension OverlayView {
         case mediaOptionsButtonTapped
         case optionSelected((AVMediaCharacteristic, HLSAssetOption))
         case offSelected(AVMediaCharacteristic)
+        case cancelSelected
 
         public static func == (lhs: OverlayView.Action, rhs: OverlayView.Action) -> Bool {
             switch (lhs, rhs) {
@@ -150,6 +151,8 @@ public extension OverlayView {
                     return lhsValue.0 == rhsValue.0 && lhsValue.1 == rhsValue.1
                 case (.offSelected(let lhsValue), .offSelected(let rhsValue)):
                     return lhsValue == rhsValue
+                case (.cancelSelected, .cancelSelected):
+                    return true
                 default:
                     return false
             }
@@ -176,6 +179,8 @@ public extension OverlayView {
                 return .none
             case .offSelected(let characteristic):
                 state.selectedOptionsByCharacteristic[characteristic] = nil
+                return .none
+            case .cancelSelected:
                 return .none
         }
     }
