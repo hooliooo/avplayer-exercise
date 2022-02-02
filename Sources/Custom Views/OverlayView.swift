@@ -15,6 +15,12 @@ public struct OverlayView: View {
     // MARK: Stored Properies
     public let store: Store<State, Action>
 
+    private let controlSize: CGSize = CGSize(width: 44.0, height: 44.0)
+
+    private var cornerRadius: CGFloat {
+        return self.controlSize.height / 2.0
+    }
+
     public var body: some View {
         WithViewStore(self.store) { (viewStore: ViewStore<OverlayView.State, OverlayView.Action>) in
             Color.gray
@@ -22,15 +28,17 @@ public struct OverlayView: View {
                 .cornerRadius(5.0)
                 .overlay {
                     ZStack {
-                        HStack(alignment: VerticalAlignment.bottom) {
+                        HStack(alignment: VerticalAlignment.center) {
                             Text(viewStore.isPlaying ? "Pause" : "Play")
-                                .frame(width: 150.0, height: 66.0, alignment: .center)
+                                .frame(width: self.controlSize.width, height: self.controlSize.height, alignment: .center)
+                                .cornerRadius(self.cornerRadius)
                                 .foregroundColor(Color.white)
                                 .background(Color.red)
                                 .onTapGesture {
                                     viewStore.send(Action.playPauseButtonTapped)
                                 }
                                 .transition(.scale)
+
                             Menu(
                                 content: {
                                     ForEach(viewStore.characteristics) { (characteristic: AVMediaCharacteristic) in
@@ -87,12 +95,12 @@ public struct OverlayView: View {
                                 },
                                 label: {
                                     Image(systemName: "ellipsis")
-                                        .frame(width: 66.0, height: 66.0, alignment: .center)
+                                        .frame(width: 44.0, height: 44.0, alignment: .center)
                                 }
                             )
                                 .foregroundColor(Color.black)
                                 .background(Color.red)
-                                .cornerRadius(33.0)
+                                .cornerRadius(22.0)
                                 .onTapGesture {
                                     viewStore.send(Action.mediaOptionsButtonTapped)
                                 }
@@ -128,6 +136,7 @@ public extension OverlayView {
          */
         public var selectedOptionsByCharacteristic: [AVMediaCharacteristic: HLSAssetOption?] = [:]
 
+        // MARK: Computed Properties
         public var characteristics: [AVMediaCharacteristic] {
             return groupsByCharacteristic.keys.sorted { $0.rawValue < $1.rawValue }
         }

@@ -47,13 +47,11 @@ public struct HLSVideoView: View {
             .gesture(
                 DragGesture(minimumDistance: 0.0)
                     .onChanged { _ in
-                        os_log("Dragging Currently", log: Constants.ViewLog, type: OSLogType.info)
                         withAnimation {
                             viewStore.send(Action.isUserInteracting(true))
                         }
                     }
                     .onEnded { _ in
-                        os_log("Dragging Ended", log: Constants.ViewLog, type: OSLogType.info)
                         viewStore.send(Action.isUserInteracting(false))
                     }
                 )
