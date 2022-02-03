@@ -21,7 +21,7 @@ public struct HLSVideoView: View {
     // MARK: View
     public var body: some View {
         WithViewStore(self.store) { viewStore in
-//            VideoPlayer(player: AVPlayer(playerItem: viewStore.asset.item))
+//            VideoPlayer(player: viewStore.player)
 
             ZStack(alignment: .bottom) {
                 VideoPlayerView(
@@ -45,17 +45,17 @@ public struct HLSVideoView: View {
             .onAppear {
                 viewStore.send(Action.monitorStatus)
             }
-            .gesture(
-                DragGesture(minimumDistance: 0.0)
-                    .onChanged { _ in
-                        withAnimation {
-                            viewStore.send(Action.isUserInteracting(true))
-                        }
-                    }
-                    .onEnded { _ in
-                        viewStore.send(Action.isUserInteracting(false))
-                    }
-                )
+//            .gesture(
+//                DragGesture(minimumDistance: 0.0)
+//                    .onChanged { _ in
+//                        withAnimation {
+//                            viewStore.send(Action.isUserInteracting(true))
+//                        }
+//                    }
+//                    .onEnded { _ in
+//                        viewStore.send(Action.isUserInteracting(false))
+//                    }
+//                )
         }
     }
 }
@@ -132,7 +132,8 @@ public extension HLSVideoView {
             environment: { (env: HLSVideoView.Environment) -> OverlayView.Environment in
                 OverlayView.Environment(
                     mainQueue: env.mainQueue,
-                    monitorProgress: env.client.monitorProgress
+                    monitorProgress: env.client.monitorProgress,
+                    seekProgress: env.client.seekProgress
                 )
             }
         ),

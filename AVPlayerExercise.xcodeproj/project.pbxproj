@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141C2FA127AB516600EFBD15 /* View+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */; };
 		14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0627A96ED80082CA18 /* VideoPlayerView.swift */; };
 		14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */; };
 		14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0F27A9AF3B0082CA18 /* Constants.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14585C0627A96ED80082CA18 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		14585C0927A97FE00082CA18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSAsset.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */,
 				14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */,
 				14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */,
+				141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */,
 				14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */,
 				14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */,
+				141C2FA127AB516600EFBD15 /* View+AVPlayerExercise.swift in Sources */,
 				14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */,
 				14585C1427A9E15F0082CA18 /* VideoOptionView.swift in Sources */,
 				14585C1227A9B4110082CA18 /* OverlayView.swift in Sources */,

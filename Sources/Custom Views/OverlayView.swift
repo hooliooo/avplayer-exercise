@@ -31,13 +31,26 @@ public struct OverlayView: View {
                     ZStack {
                         VStack(alignment: HorizontalAlignment.center, spacing: 0.0) {
                             PlaybackProgressView(
-                                progress: viewStore.binding(
+                                currentProgress: viewStore.binding(
                                     get: \.current,
                                     send: Action.updateProgress
+                                ),
+                                seekProgress: viewStore.binding(
+                                    get: \.seekProgress,
+                                    send: Action.seek
                                 ),
                                 end: viewStore.end
                             )
                             HStack(alignment: VerticalAlignment.bottom) {
+                                Button(
+                                    action: {
+                                        viewStore.send(Action.seek(max(viewStore.current - 15.0, 0.0)))
+                                    },
+                                    label: {
+                                        Image(systemName: "gobackward.15")
+                                    }
+                                )
+                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
                                 Button(
                                     action: {
                                         viewStore.send(Action.playPauseButtonTapped)
@@ -46,11 +59,16 @@ public struct OverlayView: View {
                                         Image(systemName: viewStore.state.isPlaying ? "pause.fill" : "play.fill")
                                     }
                                 )
-                                    .frame(width: self.controlSize.width, height: self.controlSize.height, alignment: .center)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.red)
-                                    .cornerRadius(self.cornerRadius)
-                                    .transition(.scale)
+                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
+                                Button(
+                                    action: {
+                                        viewStore.send(Action.seek(min(viewStore.current + 15.0, viewStore.end)))
+                                    },
+                                    label: {
+                                        Image(systemName: "goforward.15")
+                                    }
+                                )
+                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
                                 Menu(
                                     content: {
                                         ForEach(viewStore.characteristics) { (characteristic: AVMediaCharacteristic) in
@@ -118,6 +136,7 @@ public struct OverlayView: View {
                                     }
                                     .padding(.trailing, 15.0)
                             }
+                            .padding(.bottom, 10.0)
                         }
 
                     }
@@ -163,6 +182,8 @@ public extension OverlayView {
          */
         public var end: Double = 0.0
 
+        public var seekProgress: Double?
+
         // MARK: Computed Properties
         public var characteristics: [AVMediaCharacteristic] {
             return groupsByCharacteristic.keys.sorted { $0.rawValue < $1.rawValue }
@@ -179,6 +200,7 @@ public extension OverlayView {
         case monitorProgress
         case newProgress(Result<TimeInterval, Never>)
         case updateProgress(TimeInterval)
+        case seek(TimeInterval?)
 
         public static func == (lhs: OverlayView.Action, rhs: OverlayView.Action) -> Bool {
             switch (lhs, rhs) {
@@ -198,6 +220,8 @@ public extension OverlayView {
                     return lhsValue == rhsValue
                 case (.updateProgress(let lhsValue), .updateProgress(let rhsValue)):
                     return lhsValue == rhsValue
+                case (.seek(let lhsValue), .seek(let rhsValue)):
+                    return lhsValue == rhsValue
                 default:
                     return false
             }
@@ -208,11 +232,13 @@ public extension OverlayView {
     struct Environment {
         public var mainQueue: AnySchedulerOf<DispatchQueue>
         public var monitorProgress: (AVPlayer) -> Effect<TimeInterval, Never>
+        public var seekProgress: (AVPlayer, TimeInterval) -> Effect<TimeInterval, Never>
     }
 
     // MARK: Reducer
     static let Reducer = ComposableArchitecture.Reducer<State, Action, Environment> {
         (state: inout State, action: Action, env: Environment) -> Effect<Action, Never> in // swiftlint:disable:this closure_parameter_position
+        struct MonitorId: Hashable {}
         switch action {
             case .playPauseButtonTapped:
                 state.isPlaying.toggle()
@@ -233,6 +259,7 @@ public extension OverlayView {
                     return env.monitorProgress(player)
                         .receive(on: env.mainQueue)
                         .catchToEffect(Action.newProgress)
+                        .cancellable(id: MonitorId())
                 } else {
                     return .none
                 }
@@ -241,6 +268,16 @@ public extension OverlayView {
             case .updateProgress(let current):
                 state.current = current
                 return .none
+            case .seek(let seekProgress):
+                state.seekProgress = seekProgress
+                if let player = state.player, let seekProgress = seekProgress {
+                    return env.seekProgress(player, seekProgress)
+                        .receive(on: env.mainQueue)
+                        .catchToEffect(Action.newProgress)
+                        .cancellable(id: MonitorId())
+                } else {
+                    return .none
+                }
         }
     }
 
