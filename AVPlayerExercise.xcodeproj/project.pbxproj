@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141C2FA127AB516600EFBD15 /* View+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */; };
 		14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0627A96ED80082CA18 /* VideoPlayerView.swift */; };
 		14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */; };
 		14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14585C0F27A9AF3B0082CA18 /* Constants.swift */; };
@@ -19,12 +20,11 @@
 		14A4A5C027A9610B0055D812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5BF27A9610B0055D812 /* Assets.xcassets */; };
 		14A4A5C327A9610B0055D812 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5C227A9610B0055D812 /* Preview Assets.xcassets */; };
 		14A4A5CD27A9610B0055D812 /* AVPlayerExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5CC27A9610B0055D812 /* AVPlayerExerciseTests.swift */; };
-		14A4A5D727A9610B0055D812 /* AVPlayerExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */; };
-		14A4A5D927A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */; };
 		14EFAB8127AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */; };
 		14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */; };
 		14EFAB8627AAB59E006F87BA /* String+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */; };
 		14EFAB8827AABAE5006F87BA /* AssetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8727AABAE5006F87BA /* AssetClient.swift */; };
+		14EFAB8C27AB00ED006F87BA /* PlaybackProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14585C0627A96ED80082CA18 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		14585C0927A97FE00082CA18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		14585C0C27A9AB7A0082CA18 /* HLSAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSAsset.swift; sourceTree = "<group>"; };
@@ -59,14 +60,13 @@
 		14A4A5C827A9610B0055D812 /* AVPlayerExerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerExerciseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A4A5CC27A9610B0055D812 /* AVPlayerExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseTests.swift; sourceTree = "<group>"; };
 		14A4A5D227A9610B0055D812 /* AVPlayerExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITests.swift; sourceTree = "<group>"; };
-		14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		14A4A5E527A962CE0055D812 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14A4A5E727A962FE0055D812 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMediaSelectionOption+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMediaCharacteristic+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AVPlayerExercise.swift"; sourceTree = "<group>"; };
 		14EFAB8727AABAE5006F87BA /* AssetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetClient.swift; sourceTree = "<group>"; };
+		14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +102,7 @@
 				14585C0627A96ED80082CA18 /* VideoPlayerView.swift */,
 				14585C1127A9B4100082CA18 /* OverlayView.swift */,
 				14585C1327A9E15F0082CA18 /* VideoOptionView.swift */,
+				14EFAB8B27AB00ED006F87BA /* PlaybackProgressView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -131,7 +132,6 @@
 				14585C0927A97FE00082CA18 /* .swiftlint.yml */,
 				14A4A5BA27A9610B0055D812 /* Sources */,
 				14A4A5CB27A9610B0055D812 /* AVPlayerExerciseTests */,
-				14A4A5D527A9610B0055D812 /* AVPlayerExerciseUITests */,
 				14A4A5B927A9610B0055D812 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,21 +177,13 @@
 			path = AVPlayerExerciseTests;
 			sourceTree = "<group>";
 		};
-		14A4A5D527A9610B0055D812 /* AVPlayerExerciseUITests */ = {
-			isa = PBXGroup;
-			children = (
-				14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */,
-				14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */,
-			);
-			path = AVPlayerExerciseUITests;
-			sourceTree = "<group>";
-		};
 		14EFAB8427AAB579006F87BA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */,
 				14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */,
 				14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */,
+				141C2FA027AB516600EFBD15 /* View+AVPlayerExercise.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,9 +348,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14EFAB8C27AB00ED006F87BA /* PlaybackProgressView.swift in Sources */,
 				14585C1027A9AF3B0082CA18 /* Constants.swift in Sources */,
 				14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */,
 				14585C0D27A9AB7A0082CA18 /* HLSAsset.swift in Sources */,
+				141C2FA127AB516600EFBD15 /* View+AVPlayerExercise.swift in Sources */,
 				14585C0727A96ED80082CA18 /* VideoPlayerView.swift in Sources */,
 				14585C1427A9E15F0082CA18 /* VideoOptionView.swift in Sources */,
 				14585C1227A9B4110082CA18 /* OverlayView.swift in Sources */,
@@ -382,8 +376,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A4A5D927A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift in Sources */,
-				14A4A5D727A9610B0055D812 /* AVPlayerExerciseUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

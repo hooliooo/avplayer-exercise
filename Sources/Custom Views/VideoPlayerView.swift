@@ -14,17 +14,17 @@ public struct VideoPlayerView: UIViewRepresentable {
 
     // MARK: Initializer
     public init(
-        asset: HLSAsset,
+        player: AVPlayer,
         mode: VideoPlayerView.Mode = .pause,
         selectedOptions: [AVMediaCharacteristic: HLSAssetOption] = [:]
     ) {
-        self.asset = asset
+        self.player = player
         self.mode = mode
         self.selectedOptions = selectedOptions
     }
 
     // MARK: Stored Properties
-    public var asset: HLSAsset
+    public var player: AVPlayer
 
     public var mode: VideoPlayerView.Mode
 
@@ -44,7 +44,7 @@ public struct VideoPlayerView: UIViewRepresentable {
 
     public func makeUIView(context: Context) -> _VideoPlayerView {
         let view: _VideoPlayerView = _VideoPlayerView()
-        view.player = AVPlayer(playerItem: self.asset.item)
+        view.player = self.player
         return view
     }
 

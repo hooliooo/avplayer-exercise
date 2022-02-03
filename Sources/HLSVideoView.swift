@@ -20,11 +20,12 @@ public struct HLSVideoView: View {
 
     // MARK: View
     public var body: some View {
-//        VideoPlayer(player: AVPlayer(playerItem: self.asset.playerItem))
         WithViewStore(self.store) { viewStore in
+//            VideoPlayer(player: viewStore.player)
+
             ZStack(alignment: .bottom) {
                 VideoPlayerView(
-                    asset: viewStore.asset,
+                    player: viewStore.player,
                     mode: viewStore.overlayState.isPlaying ? .play : .pause,
                     selectedOptions: viewStore.overlayState.selectedOptionsByCharacteristic.compactMapValues { $0 }
                 )
@@ -35,8 +36,8 @@ public struct HLSVideoView: View {
                         .frame(
                             minWidth: 0.0,
                             maxWidth: .infinity,
-                            minHeight: 72.0,
-                            maxHeight: 72.0,
+                            minHeight: 84.0,
+                            maxHeight: 84.0,
                             alignment: Alignment.center
                         )
                 }
@@ -44,17 +45,17 @@ public struct HLSVideoView: View {
             .onAppear {
                 viewStore.send(Action.monitorStatus)
             }
-            .gesture(
-                DragGesture(minimumDistance: 0.0)
-                    .onChanged { _ in
-                        withAnimation {
-                            viewStore.send(Action.isUserInteracting(true))
-                        }
-                    }
-                    .onEnded { _ in
-                        viewStore.send(Action.isUserInteracting(false))
-                    }
-                )
+//            .gesture(
+//                DragGesture(minimumDistance: 0.0)
+//                    .onChanged { _ in
+//                        withAnimation {
+//                            viewStore.send(Action.isUserInteracting(true))
+//                        }
+//                    }
+//                    .onEnded { _ in
+//                        viewStore.send(Action.isUserInteracting(false))
+//                    }
+//                )
         }
     }
 }
@@ -68,6 +69,8 @@ public extension HLSVideoView {
          The asset to be played by the AVPlayer
          */
         public var asset: HLSAsset
+
+        public var player: AVPlayer
 
         /**
          The status of the AVPlayerItem
@@ -126,8 +129,12 @@ public extension HLSVideoView {
         OverlayView.Reducer.pullback(
             state: \.overlayState,
             action: /HLSVideoView.Action.overlay,
-            environment: { (_: HLSVideoView.Environment) -> OverlayView.Environment in
-                OverlayView.Environment()
+            environment: { (env: HLSVideoView.Environment) -> OverlayView.Environment in
+                OverlayView.Environment(
+                    mainQueue: env.mainQueue,
+                    monitorProgress: env.client.monitorProgress,
+                    seekProgress: env.client.seekProgress
+                )
             }
         ),
         .init {
@@ -150,7 +157,9 @@ public extension HLSVideoView {
                             else {
                                 continue
                             }
+                            state.overlayState.player = state.player
                             state.overlayState.groupsByCharacteristic[characteristic] = group
+                            state.overlayState.end = CMTimeGetSeconds(state.asset.item.duration)
 
                             if let selectedOption = state.asset.item.currentMediaSelection.selectedMediaOption(in: group) {
                                 state.overlayState.selectedOptionsByCharacteristic[characteristic] = HLSAssetOption(
