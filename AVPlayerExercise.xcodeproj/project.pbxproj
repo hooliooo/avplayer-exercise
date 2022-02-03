@@ -20,8 +20,6 @@
 		14A4A5C027A9610B0055D812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5BF27A9610B0055D812 /* Assets.xcassets */; };
 		14A4A5C327A9610B0055D812 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A4A5C227A9610B0055D812 /* Preview Assets.xcassets */; };
 		14A4A5CD27A9610B0055D812 /* AVPlayerExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5CC27A9610B0055D812 /* AVPlayerExerciseTests.swift */; };
-		14A4A5D727A9610B0055D812 /* AVPlayerExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */; };
-		14A4A5D927A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */; };
 		14EFAB8127AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */; };
 		14EFAB8327AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8227AAB554006F87BA /* AVMediaCharacteristic+AVPlayerExercise.swift */; };
 		14EFAB8627AAB59E006F87BA /* String+AVPlayerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EFAB8527AAB59E006F87BA /* String+AVPlayerExercise.swift */; };
@@ -62,8 +60,6 @@
 		14A4A5C827A9610B0055D812 /* AVPlayerExerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerExerciseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A4A5CC27A9610B0055D812 /* AVPlayerExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseTests.swift; sourceTree = "<group>"; };
 		14A4A5D227A9610B0055D812 /* AVPlayerExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITests.swift; sourceTree = "<group>"; };
-		14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerExerciseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		14A4A5E527A962CE0055D812 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14A4A5E727A962FE0055D812 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		14EFAB8027AAB4DA006F87BA /* AVMediaSelectionOption+AVPlayerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVMediaSelectionOption+AVPlayerExercise.swift"; sourceTree = "<group>"; };
@@ -136,7 +132,6 @@
 				14585C0927A97FE00082CA18 /* .swiftlint.yml */,
 				14A4A5BA27A9610B0055D812 /* Sources */,
 				14A4A5CB27A9610B0055D812 /* AVPlayerExerciseTests */,
-				14A4A5D527A9610B0055D812 /* AVPlayerExerciseUITests */,
 				14A4A5B927A9610B0055D812 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -180,15 +175,6 @@
 				14A4A5CC27A9610B0055D812 /* AVPlayerExerciseTests.swift */,
 			);
 			path = AVPlayerExerciseTests;
-			sourceTree = "<group>";
-		};
-		14A4A5D527A9610B0055D812 /* AVPlayerExerciseUITests */ = {
-			isa = PBXGroup;
-			children = (
-				14A4A5D627A9610B0055D812 /* AVPlayerExerciseUITests.swift */,
-				14A4A5D827A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift */,
-			);
-			path = AVPlayerExerciseUITests;
 			sourceTree = "<group>";
 		};
 		14EFAB8427AAB579006F87BA /* Extensions */ = {
@@ -390,8 +376,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A4A5D927A9610B0055D812 /* AVPlayerExerciseUITestsLaunchTests.swift in Sources */,
-				14A4A5D727A9610B0055D812 /* AVPlayerExerciseUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
