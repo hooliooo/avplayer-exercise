@@ -24,123 +24,134 @@ public struct OverlayView: View {
 
     public var body: some View {
         WithViewStore(self.store) { (viewStore: ViewStore<OverlayView.State, OverlayView.Action>) in
-            Color.gray
-                .grayscale(0.875)
-                .cornerRadius(5.0)
-                .overlay {
-                    ZStack {
-                        VStack(alignment: HorizontalAlignment.center, spacing: 0.0) {
-                            PlaybackProgressView(
-                                currentProgress: viewStore.binding(
-                                    get: \.current,
-                                    send: Action.updateProgress
-                                ),
-                                seekProgress: viewStore.binding(
-                                    get: \.seekProgress,
-                                    send: Action.seek
-                                ),
-                                end: viewStore.end
-                            )
-                            HStack(alignment: VerticalAlignment.bottom) {
-                                Button(
-                                    action: {
-                                        viewStore.send(Action.seek(max(viewStore.current - 15.0, 0.0)))
-                                    },
-                                    label: {
-                                        Image(systemName: "gobackward.15")
-                                    }
+            GeometryReader { (proxy: GeometryProxy) in
+                Color.gray
+                    .grayscale(0.875)
+                    .cornerRadius(5.0)
+                    .overlay {
+                        ZStack {
+                            VStack(alignment: HorizontalAlignment.center, spacing: 0.0) {
+                                PlaybackProgressView(
+                                    currentProgress: viewStore.binding(
+                                        get: \.current,
+                                        send: Action.updateProgress
+                                    ),
+                                    seekProgress: viewStore.binding(
+                                        get: \.seekProgress,
+                                        send: Action.seek
+                                    ),
+                                    end: viewStore.end
                                 )
-                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
-                                Button(
-                                    action: {
-                                        viewStore.send(Action.playPauseButtonTapped)
-                                    },
-                                    label: {
-                                        Image(systemName: viewStore.state.isPlaying ? "pause.fill" : "play.fill")
-                                    }
-                                )
-                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
-                                Button(
-                                    action: {
-                                        viewStore.send(Action.seek(min(viewStore.current + 15.0, viewStore.end)))
-                                    },
-                                    label: {
-                                        Image(systemName: "goforward.15")
-                                    }
-                                )
-                                    .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
-                                Menu(
-                                    content: {
-                                        ForEach(viewStore.characteristics) { (characteristic: AVMediaCharacteristic) in
-                                            Menu(
-                                                characteristic.rawValue,
-                                                content: {
-                                                    let group: AVMediaSelectionGroup = viewStore
-                                                        .groupsByCharacteristic[characteristic]! // swiftlint:disable:this force_unwrapping
-                                                    ForEach(group.options) { (option: AVMediaSelectionOption) in
-                                                        Button(
-                                                            action: {
-                                                                viewStore.send(
-                                                                    OverlayView.Action.optionSelected(
-                                                                        (characteristic, HLSAssetOption(option: option, group: group))
-                                                                    )
-                                                                )
-                                                            },
-                                                            label: {
-                                                                let name = viewStore.selectedOptionsByCharacteristic[characteristic]??.name
-
-                                                                VideoOptionView(
-                                                                    name: option.displayName,
-                                                                    isSelected: name == option.displayName
-                                                                )
-                                                            }
-                                                        )
-                                                    }
-                                                    if characteristic == AVMediaCharacteristic.legible {
-                                                        Button(
-                                                            action: {
-                                                                viewStore.send(Action.offSelected(characteristic))
-                                                            },
-                                                            label: {
-                                                                let isSelected: Bool = viewStore
-                                                                    .selectedOptionsByCharacteristic[AVMediaCharacteristic.legible] == nil
-                                                                VideoOptionView(
-                                                                    name: "Off",
-                                                                    isSelected: isSelected
-                                                                )
-                                                            }
-                                                        )
-                                                    } else {
-                                                        EmptyView()
-                                                    }
-                                                }
-                                            )
-                                        }
+                                HStack(alignment: VerticalAlignment.bottom, spacing: proxy.size.width / 12.0) {
+                                    HStack {
+                                        Spacer()
                                         Button(
-                                            "Cancel",
                                             action: {
-                                                viewStore.send(Action.cancelSelected)
+                                                viewStore.send(Action.seek(max(viewStore.current - 15.0, 0.0)))
+                                            },
+                                            label: {
+                                                Image(systemName: "gobackward.15")
                                             }
                                         )
-                                    },
-                                    label: {
-                                        Image(systemName: "ellipsis")
-                                            .frame(width: 44.0, height: 44.0, alignment: .center)
+                                            .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
                                     }
-                                )
-                                    .foregroundColor(Color.black)
-                                    .background(Color.red)
-                                    .cornerRadius(self.cornerRadius)
-                                    .onTapGesture {
-                                        viewStore.send(Action.mediaOptionsButtonTapped)
+                                    .padding(.leading, 15.0)
+
+                                    Button(
+                                        action: {
+                                            viewStore.send(Action.playPauseButtonTapped)
+                                        },
+                                        label: {
+                                            Image(systemName: viewStore.state.isPlaying ? "pause.fill" : "play.fill")
+                                        }
+                                    )
+                                        .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
+                                    HStack {
+                                        Button(
+                                            action: {
+                                                viewStore.send(Action.seek(min(viewStore.current + 15.0, viewStore.end)))
+                                            },
+                                            label: {
+                                                Image(systemName: "goforward.15")
+                                            }
+                                        )
+                                            .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
+                                        Spacer()
+                                        Menu(
+                                            content: {
+                                                ForEach(viewStore.characteristics) { (characteristic: AVMediaCharacteristic) in
+                                                    Menu(
+                                                        characteristic.rawValue,
+                                                        content: {
+                                                            let group: AVMediaSelectionGroup = viewStore
+                                                                .groupsByCharacteristic[characteristic]! // swiftlint:disable:this force_unwrapping
+                                                            ForEach(group.options) { (option: AVMediaSelectionOption) in
+                                                                Button(
+                                                                    action: {
+                                                                        viewStore.send(
+                                                                            OverlayView.Action.optionSelected(
+                                                                                (characteristic, HLSAssetOption(option: option, group: group))
+                                                                            )
+                                                                        )
+                                                                    },
+                                                                    label: {
+                                                                        let name = viewStore.selectedOptionsByCharacteristic[characteristic]??.name
+
+                                                                        VideoOptionView(
+                                                                            name: option.displayName,
+                                                                            isSelected: name == option.displayName
+                                                                        )
+                                                                    }
+                                                                )
+                                                            }
+                                                            if characteristic == AVMediaCharacteristic.legible {
+                                                                Button(
+                                                                    action: {
+                                                                        viewStore.send(Action.offSelected(characteristic))
+                                                                    },
+                                                                    label: {
+                                                                        let isSelected: Bool = viewStore
+                                                                            .selectedOptionsByCharacteristic[AVMediaCharacteristic.legible] == nil
+                                                                        VideoOptionView(
+                                                                            name: "Off",
+                                                                            isSelected: isSelected
+                                                                        )
+                                                                    }
+                                                                )
+                                                            } else {
+                                                                EmptyView()
+                                                            }
+                                                        }
+                                                    )
+                                                }
+                                                Button(
+                                                    "Cancel",
+                                                    action: {
+                                                        viewStore.send(Action.cancelSelected)
+                                                    }
+                                                )
+                                            },
+                                            label: {
+                                                Image(systemName: "ellipsis")
+                                                    .frame(width: 44.0, height: 44.0, alignment: .center)
+                                                    .foregroundColor(Color.white)
+                                            }
+                                        )
+                                            .foregroundColor(Color.black)
+                                            .background(Color.red)
+                                            .cornerRadius(self.cornerRadius)
+                                            .onTapGesture {
+                                                viewStore.send(Action.mediaOptionsButtonTapped)
+                                            }
                                     }
                                     .padding(.trailing, 15.0)
+                                }
+                                .padding(.bottom, 10.0)
                             }
-                            .padding(.bottom, 10.0)
-                        }
 
+                        }
                     }
-                }
+            }
         }
     }
 }
