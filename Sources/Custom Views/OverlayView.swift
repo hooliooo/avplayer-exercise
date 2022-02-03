@@ -42,11 +42,14 @@ public struct OverlayView: View {
                                     ),
                                     end: viewStore.end
                                 )
-                                HStack(alignment: VerticalAlignment.bottom, spacing: proxy.size.width / 12.0) {
-                                    HStack {
-                                        Spacer()
+                                HStack(alignment: VerticalAlignment.bottom) {
+                                    Spacer()
+                                        .padding(.leading, 15.0)
+
+                                    HStack(spacing: proxy.size.width / 25.0) {
                                         Button(
                                             action: {
+                                                print(proxy.size.width / 25.0)
                                                 viewStore.send(Action.seek(max(viewStore.current - 15.0, 0.0)))
                                             },
                                             label: {
@@ -54,19 +57,15 @@ public struct OverlayView: View {
                                             }
                                         )
                                             .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
-                                    }
-                                    .padding(.leading, 15.0)
-
-                                    Button(
-                                        action: {
-                                            viewStore.send(Action.playPauseButtonTapped)
-                                        },
-                                        label: {
-                                            Image(systemName: viewStore.state.isPlaying ? "pause.fill" : "play.fill")
-                                        }
-                                    )
-                                        .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
-                                    HStack {
+                                        Button(
+                                            action: {
+                                                viewStore.send(Action.playPauseButtonTapped)
+                                            },
+                                            label: {
+                                                Image(systemName: viewStore.state.isPlaying ? "pause.fill" : "play.fill")
+                                            }
+                                        )
+                                            .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
                                         Button(
                                             action: {
                                                 viewStore.send(Action.seek(min(viewStore.current + 15.0, viewStore.end)))
@@ -76,6 +75,9 @@ public struct OverlayView: View {
                                             }
                                         )
                                             .playbackStyling(size: self.controlSize, cornerRadius: self.cornerRadius)
+                                    }
+
+                                    HStack {
                                         Spacer()
                                         Menu(
                                             content: {
